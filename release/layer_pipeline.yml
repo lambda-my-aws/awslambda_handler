@@ -10,7 +10,6 @@ Metadata:
 Parameters:
   LayerName:
     Type: String
-    Default: ozone
   ArtifactsBucketName:
     Type: String
   GitHubRepo:

@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['boto3']
+requirements = ['boto3', 'ozone']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -36,7 +36,7 @@ setup(
     include_package_data=True,
     keywords='awslambda_handler',
     name='awslambda_handler',
-    packages=find_packages(include=['awslambda_handler']),
+    packages=find_packages(include=['awslambda_handler*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,

@@ -238,17 +238,6 @@ Resources:
               Name: !Ref Python37Build
               OutputArtifacts:
                 - Name: LayerBuild
-              RunOrder: '2'
-            - ActionTypeId:
-                Category: Build
-                Owner: AWS
-                Provider: CodeBuild
-                Version: '1'
-              Configuration:
-                ProjectName: !Ref PypiReleaseProject
-              InputArtifacts:
-                - Name: SourceCode
-              Name: !Ref PypiReleaseProject
               RunOrder: '1'
           Name: !Sub 'Build-${LayerName}'
         - Actions:

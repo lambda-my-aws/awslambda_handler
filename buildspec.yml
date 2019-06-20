@@ -1,7 +1,4 @@
 version: 0.2
-env:
-  variables:
-    LAYER_NAME: awslambda-handler
 phases:
   install:
     runtime-versions:

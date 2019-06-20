@@ -36,7 +36,6 @@ if __name__ == '__main__':
     DATE = dt.utcnow().isoformat()
     TPL = template(make_public=True, Runtimes=[PY_VERSION], Bucket=BUILD_DEST[0], Key=BUILD_DEST[1])
     TPL.set_metadata({
-        'Author': 'John Mille john@lambda-my-aws.io',
         'Version': DATE,
         'BuildBy': 'CodePipeline/CodeBuild',
         'LayerName': LAYER_NAME

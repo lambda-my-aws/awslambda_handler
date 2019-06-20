@@ -46,7 +46,7 @@ if __name__ == '__main__':
     template_config = {
         'Parameters':
         {
-            'LayerName': LAYER_NAME
+            'LayerName': LAYER_NAME.replace('_', '-')
         },
         'Tags': {
             'Name': LAYER_NAME

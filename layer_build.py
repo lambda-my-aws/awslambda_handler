@@ -32,13 +32,15 @@ if __name__ == '__main__':
     ARGS = PARSER.parse_args()
     BUILD_DEST = get_artifact_location()
     LAYER_NAME = environ['LAYER_NAME']
+    PACKAGE_NAME = environ['PACKAGE_NAME']
     PY_VERSION = environ['PY_VERSION']
     DATE = dt.utcnow().isoformat()
     TPL = template(make_public=True, Runtimes=[PY_VERSION], Bucket=BUILD_DEST[0], Key=BUILD_DEST[1])
     TPL.set_metadata({
         'Version': DATE,
         'BuildBy': 'CodePipeline/CodeBuild',
-        'LayerName': LAYER_NAME
+        'LayerName': LAYER_NAME,
+        'PackageName': PACKAGE_NAME
     })
     TPL.set_description(f'Template for {LAYER_NAME} - {DATE}')
     with open(f'{ARGS.path}/layer_template.yml', 'w') as fd:
@@ -46,7 +48,7 @@ if __name__ == '__main__':
     template_config = {
         'Parameters':
         {
-            'LayerName': LAYER_NAME.replace('_', '-')
+            'LayerName': LAYER_NAME
         },
         'Tags': {
             'Name': LAYER_NAME

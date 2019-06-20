@@ -2,12 +2,13 @@
 """
 Script to generate the CFN template for the library into a Lambda Layer from within the CodeBuild of the Layer Build.
 """
+import re
+import boto3
 from datetime import datetime as dt
 from os import environ
 from json import dumps
 from argparse import ArgumentParser
 from ozone.templates.awslambdalayer import template
-import boto3
 
 def get_artifact_location():
     """
@@ -18,7 +19,8 @@ def get_artifact_location():
     build_info = client.batch_get_builds(
         ids=[job_id]
     )['builds'][0]
-    location = build_info['artifacts']['location'].strip('aws:arn:s3:::')
+    pattern = re.compile(r'arn:aws:s3:::')
+    location = pattern.sub('', build_info['artifacts']['location'])
     bucket = location.split('/')[0]
     key = location.split('/', 1)[-1]
     return (bucket, key)
